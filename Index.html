@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archivio esercizi di Estimo – Classe V Tecnico Agrario</title>
+<style>
+:root{--bg:#f7f5ef;--card:#fff;--tx:#1f2a1f;--mu:#5d6b5d;--ac:#2f6b3a;--ac2:#e8f1e6;--bd:#d9dccf;--fm:#f3efe0}
+@media (prefers-color-scheme:dark){:root{--bg:#161b16;--card:#1f261f;--tx:#e8ece4;--mu:#9fae9f;--ac:#7cc788;--ac2:#25352a;--bd:#34403a;--fm:#2a2a20}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 Georgia,"Times New Roman",serif}
+header{padding:2rem 1rem 1rem;max-width:900px;margin:auto}
+h1{margin:0 0 .3rem;font-size:1.8rem;color:var(--ac)}
+header p{margin:0;color:var(--mu)}
+main{max-width:900px;margin:auto;padding:0 1rem 3rem}
+.bar{position:sticky;top:0;background:var(--bg);padding:.8rem 0;z-index:5;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.bar button,.bar input{font:inherit;font-size:.9rem;border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:999px;padding:.35rem .9rem}
+.bar button{cursor:pointer}
+.bar button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+.bar input{flex:1;min-width:150px;border-radius:8px}
+#n{color:var(--mu);font-size:.85rem;margin:.2rem 0 1rem}
+article{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:1.1rem 1.3rem;margin-bottom:1.2rem}
+.tag{display:inline-block;font:600 .72rem/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;background:var(--ac2);color:var(--ac);padding:.3rem .55rem;border-radius:5px;margin-right:.4rem}
+h2{font-size:1.2rem;margin:.6rem 0}
+h3{font:600 .8rem/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin:1rem 0 .4rem}
+.fm{background:var(--fm);border-left:4px solid var(--ac);padding:.5rem .9rem;font-family:Consolas,monospace;font-size:.9rem;border-radius:0 6px 6px 0}
+.fm div{margin:.15rem 0}
+ol{padding-left:1.3rem;margin:.2rem 0}li{margin:.3rem 0}
+.ris{margin-top:.9rem;padding:.55rem .9rem;background:var(--ac2);border-radius:8px;font-weight:bold}
+footer{max-width:900px;margin:auto;padding:0 1rem 2rem;color:var(--mu);font-size:.85rem}
+@media print{.bar{display:none}article{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+<h1>Archivio esercizi di Estimo</h1>
+<p>Esercizi guidati per la classe quinta – Istituto Tecnico Agrario. Traccia, formule e svolgimento completo come spunto di studio.</p>
+</header>
+<main>
+<div class="bar" id="bar"></div>
+<div id="n"></div>
+<div id="list"></div>
+</main>
+<footer>Importi e saggi sono puramente didattici. Per i riferimenti normativi (DPR 327/2001, Codice civile) verificare sempre il testo vigente.</footer>
+<script>
+const T={A:"Fondi rustici e miglioramenti",B:"Danni, espropri e servitù",C:"Successioni, usufrutto e diritti reali"};
+const E=[
+{t:"A",l:"Base",h:"Stima per capitalizzazione del reddito",
+q:"Un fondo rustico di 12 ha ha Plv annua di 9.600 €. Le spese a carico del proprietario sono: quote 700 €, assicurazione 250 €, manutenzione 650 €, amministrazione 300 €, imposte 200 €. Il saggio di capitalizzazione è 2,5%. Stimare il valore del fondo.",
+f:["Bf = Plv − Spese","V = Bf / r"],
+s:["Somma delle spese: 700 + 250 + 650 + 300 + 200 = 2.100 €","Beneficio fondiario: Bf = 9.600 − 2.100 = 7.500 €","Valore: V = 7.500 / 0,025 = 300.000 €","Valore unitario: 300.000 / 12 = 25.000 €/ha"],
+r:"V = 300.000 € (25.000 €/ha)"},
+{t:"A",l:"Base",h:"Stima con canone d’affitto",
+q:"Un fondo di 20 ha è affittato a 450 €/ha anno. Le spese a carico del locatore ammontano a 1.800 € annui. Con r = 2,4%, stimare il valore del fondo.",
+f:["Bf = Canone − Spese del locatore","V = Bf / r"],
+s:["Canone annuo: 450 × 20 = 9.000 €","Bf = 9.000 − 1.800 = 7.200 €","V = 7.200 / 0,024 = 300.000 €"],
+r:"V = 300.000 €"},
+{t:"A",l:"Base",h:"Stima sintetica comparativa",
+q:"Si deve stimare un fondo di 7,5 ha. Compravendite recenti di fondi simili: 310.000 € per 10 ha; 255.000 € per 8,5 ha; 190.000 € per 6 ha. Il fondo è privo di acqua irrigua: applicare una detrazione del 3%.",
+f:["Valore unitario medio = Σ(prezzo/superficie) / n","V = valore medio × ha × (1 − detrazione)"],
+s:["Prezzi unitari: 31.000; 30.000; 31.667 €/ha","Media: (31.000 + 30.000 + 31.667) / 3 ≈ 30.889 €/ha","Valore ordinario: 30.889 × 7,5 ≈ 231.667 €","Correzione: 231.667 × 0,97 ≈ 224.717 €"],
+r:"V ≈ 224.700 €"},
+{t:"A",l:"Intermedio",h:"Saggio di capitalizzazione da compravendita",
+q:"Un fondo è stato venduto a 420.000 €. Il beneficio fondiario accertato è 10.500 €/anno. Determinare il saggio di capitalizzazione e stimare, con lo stesso saggio, un fondo simile con Bf = 6.300 €.",
+f:["r = Bf / V","V = Bf / r"],
+s:["r = 10.500 / 420.000 = 0,025 = 2,5%","Fondo simile: V = 6.300 / 0,025 = 252.000 €"],
+r:"r = 2,5%; V = 252.000 €"},
+{t:"A",l:"Intermedio",h:"Stima analitica con aggiunte e detrazioni",
+q:"Il valore ordinario di un fondo è 300.000 €. Presenta: pozzo e impianto irriguo efficienti (+12.000 €), fabbricati da ristrutturare (−18.000 €), servitù di passaggio (−4.000 €). Calcolare il valore reale di stima.",
+f:["V = Vo + Aggiunte − Detrazioni"],
+s:["Aggiunte: +12.000 €","Detrazioni: 18.000 + 4.000 = 22.000 €","V = 300.000 + 12.000 − 22.000 = 290.000 €"],
+r:"V = 290.000 €"},
+{t:"A",l:"Intermedio",h:"Giudizio di convenienza di un miglioramento fondiario",
+q:"Un miglioramento (impianto irriguo) costa 60.000 €. Produce un aumento di beneficio fondiario di 3.600 €/anno. Con r = 4%, valutare la convenienza e l’utile.",
+f:["Aumento di valore: ΔV = ΔBf / r","Conveniente se ΔV > Costo","Utile = ΔV − Costo"],
+s:["ΔV = 3.600 / 0,04 = 90.000 €","Confronto: 90.000 > 60.000 → miglioramento conveniente","Utile = 90.000 − 60.000 = 30.000 €"],
+r:"Conveniente: utile di 30.000 €"},
+{t:"A",l:"Intermedio",h:"Indennità per miglioramenti dell’affittuario",
+q:"L’affittuario ha eseguito un miglioramento con spesa di 24.000 €. L’aumento di valore del fondo accertato è 31.000 €. Determinare l’indennità dovuta.",
+f:["Indennità = min(Spesa sostenuta; Aumento di valore)"],
+s:["Spesa: 24.000 €","Aumento di valore: 31.000 €","Si riconosce il minore dei due importi: 24.000 €"],
+r:"Indennità = 24.000 €"},
+{t:"B",l:"Base",h:"Esproprio di area agricola non edificabile",
+q:"Si espropriano 2,4 ha di terreno agricolo il cui valore di mercato è 28.000 €/ha. Calcolare l’indennità di esproprio. Se il proprietario è coltivatore diretto, calcolare anche l’indennità aggiuntiva pari al valore agricolo medio di 25.000 €/ha.",
+f:["Ie = valore agricolo × superficie","Ia = VAM × superficie (coltivatore diretto)"],
+s:["Ie = 28.000 × 2,4 = 67.200 €","Ia = 25.000 × 2,4 = 60.000 €","Totale = 67.200 + 60.000 = 127.200 €"],
+r:"Ie = 67.200 €; con indennità aggiuntiva 127.200 €"},
+{t:"B",l:"Intermedio",h:"Esproprio parziale con deprezzamento del residuo",
+q:"Un fondo di 10 ha vale 30.000 €/ha. Se ne espropriano 2 ha; la parte residua subisce un deprezzamento del 10% per difficoltà di accesso. Calcolare l’indennità complessiva.",
+f:["I = V parte espropriata + Deprezzamento del residuo"],
+s:["Parte espropriata: 2 × 30.000 = 60.000 €","Residuo: 8 × 30.000 = 240.000 €","Deprezzamento: 240.000 × 10% = 24.000 €","I = 60.000 + 24.000 = 84.000 €"],
+r:"I = 84.000 €"},
+{t:"B",l:"Base",h:"Occupazione temporanea",
+q:"Per un cantiere si occupa per 18 mesi un terreno la cui indennità di esproprio sarebbe 60.000 €. Calcolare l’indennità di occupazione temporanea (art. 50 DPR 327/2001).",
+f:["Annua = Ie / 12","Mensile = Annua / 12"],
+s:["Indennità annua: 60.000 / 12 = 5.000 €","18 mesi = 1 anno + 6 mesi","Mensile: 5.000 / 12 ≈ 416,67 €; per 6 mesi = 2.500 €","Totale = 5.000 + 2.500 = 7.500 €"],
+r:"Indennità = 7.500 €"},
+{t:"B",l:"Intermedio",h:"Servitù di passaggio",
+q:"Su un fondo di 5 ha (30.000 €/ha) si costituisce una servitù di passaggio su una striscia di 3 m × 400 m. Il residuo subisce un deprezzamento del 2% per frazionamento. Determinare l’indennità.",
+f:["I = Valore dell’area gravata + Deprezzamento del residuo"],
+s:["Area occupata: 3 × 400 = 1.200 m² = 0,12 ha","Valore area: 0,12 × 30.000 = 3.600 €","Residuo: 4,88 ha × 30.000 = 146.400 €","Deprezzamento: 146.400 × 2% = 2.928 €","I = 3.600 + 2.928 = 6.528 €"],
+r:"I = 6.528 €"},
+{t:"B",l:"Base",h:"Danno da grandine su frutteto",
+q:"Un pescheto di 4 ha produce mediamente 250 q/ha, venduti a 60 €/q. La grandinata ha distrutto il 30% della produzione. Le spese di raccolta e trasporto non sostenute sono 9 €/q. Stimare il danno.",
+f:["Danno = Produzione perduta × (Prezzo − Spese risparmiate)"],
+s:["Produzione totale: 250 × 4 = 1.000 q","Produzione perduta: 1.000 × 30% = 300 q","Ricavo perduto: 300 × 60 = 18.000 €","Spese risparmiate: 300 × 9 = 2.700 €","Danno = 18.000 − 2.700 = 15.300 €"],
+r:"Danno = 15.300 €"},
+{t:"B",l:"Base",h:"Danno da fauna selvatica su mais",
+q:"Su 5 ha di mais (resa 12 t/ha) i cinghiali hanno causato un danno del 25%. Prezzo 220 €/t; costi di raccolta risparmiati 25 €/t. Calcolare il risarcimento.",
+f:["Danno = t perdute × (Prezzo − Costo risparmiato)"],
+s:["Produzione: 5 × 12 = 60 t","Perdita: 60 × 25% = 15 t","Margine unitario: 220 − 25 = 195 €/t","Danno = 15 × 195 = 2.925 €"],
+r:"Risarcimento = 2.925 €"},
+{t:"C",l:"Intermedio",h:"Usufrutto a termine e nuda proprietà",
+q:"Un fondo ha Bf = 6.000 €/anno e r = 3%. Calcolare il valore dell’usufrutto per 10 anni e della nuda proprietà.",
+f:["V = Bf / r","U = Bf · [1 − (1+r)^−n] / r","Np = V − U  =  V / (1+r)^n"],
+s:["Piena proprietà: V = 6.000 / 0,03 = 200.000 €","Fattore: (1,03)^−10 ≈ 0,744094","U = 6.000 × (1 − 0,744094) / 0,03 ≈ 51.181 €","Np = 200.000 − 51.181 = 148.819 €","Verifica: 200.000 × 0,744094 ≈ 148.819 €"],
+r:"U ≈ 51.181 €; Np ≈ 148.819 €"},
+{t:"C",l:"Base",h:"Usufrutto vitalizio con coefficiente tabellare",
+q:"La piena proprietà di un immobile vale 300.000 €. L’usufruttuario ha 68 anni; saggio 2,5%; coefficiente di usufrutto (da tabella) = 12. Determinare il valore dell’usufrutto e della nuda proprietà.",
+f:["U = V × r × coefficiente","Np = V − U"],
+s:["U = 300.000 × 0,025 × 12 = 90.000 €","Np = 300.000 − 90.000 = 210.000 €","L’usufrutto vale il 30% della piena proprietà"],
+r:"U = 90.000 €; Np = 210.000 €"},
+{t:"C",l:"Intermedio",h:"Quota di legittima e disponibile",
+q:"Il defunto lascia 2 figli. Beni relitti 420.000 €, debiti 30.000 €, donazioni in vita a un figlio 60.000 €. Calcolare la massa di calcolo, la quota disponibile e la legittima di ciascun figlio.",
+f:["Massa = Relictum − Debiti + Donatum","Con 2 figli: legittima = 2/3, disponibile = 1/3"],
+s:["Relictum netto: 420.000 − 30.000 = 390.000 €","Massa: 390.000 + 60.000 = 450.000 €","Disponibile: 450.000 / 3 = 150.000 €","Legittima: 450.000 × 2/3 = 300.000 €, cioè 150.000 € per figlio"],
+r:"Massa 450.000 €; disponibile 150.000 €; legittima 150.000 € a figlio"},
+{t:"C",l:"Intermedio",h:"Divisione ereditaria con conguaglio",
+q:"Due coeredi con quote 3/5 (A) e 2/5 (B) dividono un terreno da 120.000 € e un fabbricato da 130.000 €. Al coerede A si assegna il fabbricato, a B il terreno. Calcolare i conguagli.",
+f:["Quota = Massa × frazione","Conguaglio = Valore assegnato − Quota spettante"],
+s:["Massa: 120.000 + 130.000 = 250.000 €","Quota A: 250.000 × 3/5 = 150.000 €; quota B: 100.000 €","A riceve 130.000 €: gli mancano 20.000 €","B riceve 120.000 €: eccede di 20.000 €","B versa 20.000 € ad A"],
+r:"Conguaglio: B → A di 20.000 €"}
+];
+let f="ALL",q="";
+const bar=document.getElementById("bar");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+function bars(){
+ bar.innerHTML="";
+ [["ALL","Tutti"],["A",T.A],["B",T.B],["C",T.C]].forEach(([k,v])=>{
+  const b=document.createElement("button");b.textContent=v;b.className=f===k?"on":"";
+  b.onclick=()=>{f=k;bars();draw()};bar.appendChild(b)});
+ const i=document.createElement("input");i.placeholder="Cerca…";i.value=q;
+ i.oninput=e=>{q=e.target.value.toLowerCase();draw()};bar.appendChild(i);
+ if(q)i.focus();
+}
+function draw(){
+ const L=E.map((e,i)=>({...e,i})).filter(e=>(f==="ALL"||e.t===f)&&(e.h+e.q).toLowerCase().includes(q));
+ document.getElementById("n").textContent=L.length+" esercizi";
+ document.getElementById("list").innerHTML=L.map(e=>`<article><span class="tag">${T[e.t]}</span><span class="tag">${e.l}</span>
+<h2>${e.i+1}. ${esc(e.h)}</h2><p>${esc(e.q)}</p>
+<h3>Formule</h3><div class="fm">${e.f.map(x=>"<div>"+esc(x)+"</div>").join("")}</div>
+<h3>Svolgimento</h3><ol>${e.s.map(x=>"<li>"+esc(x)+"</li>").join("")}</ol>
+<div class="ris">Risultato: ${esc(e.r)}</div></article>`).join("");
+}
+bars();draw();
+</script>
+</body>
+</html>
