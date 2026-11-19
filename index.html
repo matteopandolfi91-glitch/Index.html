@@ -8,7 +8,7 @@
 <style>
 :root{--bg:#f7f5ef;--card:#fff;--tx:#1f2a1f;--mu:#5d6b5d;--ac:#2f6b3a;--ac2:#e8f1e6;--bd:#d9dccf}
 @media(prefers-color-scheme:dark){:root{--bg:#161b16;--card:#1f261f;--tx:#e8ece4;--mu:#9fae9f;--ac:#7cc788;--ac2:#25352a;--bd:#34403a}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 Georgia,"Times New Roman",serif}header,main,footer{max-width:900px;margin:auto;padding-left:1rem;padding-right:1rem}header{padding-top:2rem;padding-bottom:1.5rem}h1{margin:0 0 .35rem;font-size:1.8rem;color:var(--ac)}header p{margin:0;color:var(--mu)}main{padding-bottom:2rem}.group{margin:0 0 2rem}h2{font-size:1.2rem;color:var(--ac);margin:0 0 .8rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:.75rem}.exercise{display:flex;align-items:center;gap:.8rem;min-height:4rem;padding:.85rem 1rem;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);text-decoration:none;transition:transform .15s,border-color .15s,box-shadow .15s}.exercise:hover,.exercise:focus-visible{border-color:var(--ac);box-shadow:0 3px 12px #0001;transform:translateY(-2px);outline:none}.number{display:grid;place-items:center;flex:0 0 2rem;height:2rem;border-radius:50%;background:var(--ac2);color:var(--ac);font:700 .85rem system-ui,sans-serif}.title{font-weight:bold}.arrow{margin-left:auto;color:var(--ac);font-size:1.2rem}footer{padding-bottom:2rem;color:var(--mu);font-size:.85rem}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 Georgia,"Times New Roman",serif}header,main,footer{max-width:900px;margin:auto;padding-left:1rem;padding-right:1rem}header{padding-top:2rem;padding-bottom:1rem}h1{margin:0 0 .3rem;color:var(--ac)}header p{color:var(--mu);margin:0}.group{margin:2rem 0}.grid{display:grid;gap:.75rem}.exercise{display:grid;grid-template-columns:2.2rem 1fr 1rem;align-items:center;text-decoration:none;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:.8rem 1rem}.exercise:hover{border-color:var(--ac);transform:translateY(-1px)}.number{font-weight:bold;color:var(--ac)}.title{font-size:1.05rem}.arrow{font-size:1.4rem;color:var(--mu)}footer{padding-top:1.5rem;padding-bottom:2rem;color:var(--mu);font-size:.85rem}
 </style>
 </head>
 <body>
@@ -20,7 +20,7 @@
 <section class="group" aria-labelledby="fondi">
 <h2 id="fondi">Fondi rustici e miglioramenti</h2>
 <div class="grid">
-<a class="exercise" href="esercizio-1.html"><span class="number">1</span><span class="title">Stima per capitalizzazione del reddito</span><span class="arrow" aria-hidden="true">›</span></a>
+<a class="exercise" href="esercizio-1.html"><span class="number">1</span><span class="title">Stima analitica del valore di mercato</span><span class="arrow" aria-hidden="true">›</span></a>
 <a class="exercise" href="esercizio-2.html"><span class="number">2</span><span class="title">Stima con canone d’affitto</span><span class="arrow" aria-hidden="true">›</span></a>
 <a class="exercise" href="esercizio-3.html"><span class="number">3</span><span class="title">Stima sintetica comparativa</span><span class="arrow" aria-hidden="true">›</span></a>
 <a class="exercise" href="esercizio-4.html"><span class="number">4</span><span class="title">Saggio di capitalizzazione da compravendita</span><span class="arrow" aria-hidden="true">›</span></a>
@@ -50,6 +50,6 @@
 </div>
 </section>
 </main>
-<footer>Importi e saggi sono puramente didattici. Per i riferimenti normativi (DPR 327/2001, Codice civile) verificare sempre il testo vigente.</footer>
+<footer>Importi e saggi sono puramente didattici. Per i riferimenti normativi verificare sempre il testo vigente.</footer>
 </body>
 </html>
